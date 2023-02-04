@@ -5,41 +5,61 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     private Animator playerAnim;
+    private Rigidbody playerRb;
     private float speed = 0;
     private float horizontalInput;
+    public float turnSpeed = 10.0f;
+    public float jumpForce = 1.00f;
+    private bool inAir = false;
 
     // Start is called before the first frame update
     void Start()
     {
         playerAnim = GetComponent<Animator>();
+        playerRb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {   
-        //Double la vitesse si touche de sprint enfoncé
+        //Double la vitesse si touche de sprint enfonce
         if (Input.GetKey(KeyCode.LeftShift))
             speed = 1;
         else
             speed = 0.5f;
 
-        //Active la marche arrière si S est enfoncé, désactive sinon
-        if (Input.GetKey(KeyCode.S))
+        //Active la marche arriere si S est enfonce, desactive sinon
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             playerAnim.SetBool("back_b", true);
         else
             playerAnim.SetBool("back_b", false);
 
-        if (Input.GetAxis("Vertical") != 0) //Si S ou W enfoncé
+        if (Input.GetAxis("Vertical") != 0) //Si S ou W enfonce
             playerAnim.SetFloat("speed_f", speed);
         else
             playerAnim.SetFloat("speed_f", 0);
 
-        horizontalInput = Input.GetAxis("Horizontal"); //Pour obtenir si A ou D sont pressés
-        transform.Rotate(Vector3.up, Time.deltaTime * horizontalInput * 10);
+        horizontalInput = Input.GetAxis("Horizontal"); //Pour obtenir si A ou D sont presses
+        transform.Rotate(Vector3.up, Time.deltaTime * horizontalInput * turnSpeed);
 
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        if (Input.GetKeyDown(KeyCode.Space) && !inAir) 
         {
-            playerAnim.SetTrigger("jump_t"); //Active le trigger de l'animation si ESPACE est pressé
+            playerAnim.SetTrigger("jump_t"); //Active le trigger de l'animation si ESPACE est presse
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            inAir = true;
         }
+
+        
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+            inAir = false;
+        if (collision.gameObject.CompareTag("Checkpoint"))
+        {
+            //Gestion des checkpoint
+        }
+
     }
 }
