@@ -9,34 +9,38 @@ public class StartManager : MonoBehaviour
     public GameObject[] AiToSpawn;
     private GameObject introCamera;
     private GameObject playerCamera;
+    public bool playerCanMove = false;
+    public int scene;
 
 
     private void OnLevelWasLoaded(int level)
     {
+        scene = level;  
+        playerCanMove = false;
         Instantiate(playerPrefab, new Vector3(0, 0, 0), playerPrefab.transform.rotation);
         introCamera = GameObject.FindGameObjectWithTag("IntroCam");
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
         //Rajouter le spawn de ai avec un foreach ici
 
-        introCamera.SetActive(true);
-        playerCamera.SetActive(false);
+    }
 
-
-        if (level == 1)
+    private void Update()
+    {
+        if (playerCanMove)
         {
-            introCamera.transform.position = new Vector3(12, 8, -23);
-            
-            //Trouver un moyen ici de faire la cinématique d'intro
-
             introCamera.SetActive(false);
             playerCamera.SetActive(true);
         }
+        else
+        {
+            introCamera.SetActive(true);
+            playerCamera.SetActive(false);
+        }
     }
 
-    private IEnumerable WaitForMove(GameObject entity, Vector3 vector)
+    private IEnumerable WaitForSecond(int second)
     {
-        yield return new WaitForEndOfFrame();
-        entity.transform.Translate(vector);
+        yield return new WaitForSeconds(second);
     }
 }

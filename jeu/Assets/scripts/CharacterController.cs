@@ -6,6 +6,7 @@ public class CharacterController : MonoBehaviour
 {
     private Animator playerAnim;
     private Rigidbody playerRb;
+    private StartManager startManager;
     private float speed = 0;
     private float horizontalInput;
     public float turnSpeed = 10.0f;
@@ -18,42 +19,47 @@ public class CharacterController : MonoBehaviour
     {
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody>();
+        startManager = GameObject.FindObjectOfType<StartManager>();
+
         checkPoint = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Double la vitesse si touche de sprint enfonce
-        if (Input.GetKey(KeyCode.LeftShift))
-            speed = 1;
-        else
-            speed = 0.5f;
-
-        //Active la marche arriere si S est enfonce, desactive sinon
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-            playerAnim.SetBool("back_b", true);
-        else
-            playerAnim.SetBool("back_b", false);
-
-        if (Input.GetAxis("Vertical") != 0) //Si S ou W enfonce
-            playerAnim.SetFloat("speed_f", speed);
-        else
-            playerAnim.SetFloat("speed_f", 0);
-
-        horizontalInput = Input.GetAxis("Horizontal"); //Pour obtenir si A ou D sont presses
-        transform.Rotate(Vector3.up, Time.deltaTime * horizontalInput * turnSpeed);
-
-        if (Input.GetKeyDown(KeyCode.Space) && !inAir)
+        if (startManager.playerCanMove) //Permet d'activer le controle du joueur lorsque la cinématique d'intro est fini
         {
-            playerAnim.SetTrigger("jump_t"); //Active le trigger de l'animation si ESPACE est presse
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            inAir = true;
-        }
+            //Double la vitesse si touche de sprint enfonce
+            if (Input.GetKey(KeyCode.LeftShift))
+                speed = 1;
+            else
+                speed = 0.5f;
 
-        if (transform.position.y < -10) //Si on tombe, on retourne au checkpoint
-        {
-            transform.position = checkPoint;
+            //Active la marche arriere si S est enfonce, desactive sinon
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+                playerAnim.SetBool("back_b", true);
+            else
+                playerAnim.SetBool("back_b", false);
+
+            if (Input.GetAxis("Vertical") != 0) //Si S ou W enfonce
+                playerAnim.SetFloat("speed_f", speed);
+            else
+                playerAnim.SetFloat("speed_f", 0);
+
+            horizontalInput = Input.GetAxis("Horizontal"); //Pour obtenir si A ou D sont presses
+            transform.Rotate(Vector3.up, Time.deltaTime * horizontalInput * turnSpeed);
+
+            if (Input.GetKeyDown(KeyCode.Space) && !inAir)
+            {
+                playerAnim.SetTrigger("jump_t"); //Active le trigger de l'animation si ESPACE est presse
+                playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                inAir = true;
+            }
+
+            if (transform.position.y < -10) //Si on tombe, on retourne au checkpoint
+            {
+                transform.position = checkPoint;
+            }
         }
     }
 
