@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IntroCamManager : MonoBehaviour
 {
-    StartManager startManager;
+    private StartManager startManager;
     public float camSpeed = 10;
 
     // Start is called before the first frame update
