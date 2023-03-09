@@ -73,6 +73,8 @@ public class CharacterController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Finish"))
             {
+            startManager.playerCanMove = false; //On désactive les mouvements du joueur
+            playerAnim.SetTrigger("dance_t"); //Lancement de la danse de fin
                 //Gérer la fin de niveau ici
             }
     }
