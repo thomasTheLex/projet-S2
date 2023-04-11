@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+    public float rotationCam = 0;
     private Animator playerAnim;
     private Rigidbody playerRb;
     private StartManager startManager;
+    private Camera playerCam;
     private float speed = 0;
     private float horizontalInput;
+    public int camRotationSpeed = 5;
     public float turnSpeed = 10.0f;
     public float jumpForce = 1.00f;
     private bool inAir = false;
@@ -17,6 +20,7 @@ public class CharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerCam = GetComponentInChildren<Camera>();
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody>();
         startManager = GameObject.FindObjectOfType<StartManager>();
@@ -82,7 +86,28 @@ public class CharacterController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") ||collision.gameObject.CompareTag("Pente"))
             inAir = false;
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Pente"))
+        {
+            if (rotationCam > -0.05)
+            {
+                playerCam.transform.Rotate(Vector3.left * camRotationSpeed * Time.deltaTime);
+                rotationCam = playerCam.transform.rotation.x;
+            }
+                
+        }
+        else if (collision.gameObject.CompareTag("Ground"))
+        {
+            if (rotationCam < 0)
+            {
+                playerCam.transform.Rotate(Vector3.right * camRotationSpeed * Time.deltaTime);
+                rotationCam = playerCam.transform.rotation.x;
+            }
+        }
     }
 }

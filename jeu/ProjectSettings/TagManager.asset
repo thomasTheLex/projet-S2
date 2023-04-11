@@ -8,6 +8,7 @@ TagManager:
   - Checkpoint
   - IntroCam
   - MovingWall
+  - Pente
   layers:
   - Default
   - TransparentFX
