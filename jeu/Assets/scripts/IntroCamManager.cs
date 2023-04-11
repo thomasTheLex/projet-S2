@@ -6,6 +6,7 @@ public class IntroCamManager : MonoBehaviour
 {
     private StartManager startManager;
     public float camSpeed = 10;
+    private Vector3 travelingVector;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,13 @@ public class IntroCamManager : MonoBehaviour
         if (startManager.scene == 1)
         {
             transform.position = new Vector3(12, 8, -23);
+            transform.rotation = new Quaternion(0, 0, 0, transform.rotation.w);
+            travelingVector = new Vector3(100, 8, -23);
+        }
+        else if (startManager.scene == 2)
+        {
+            transform.position = new Vector3(-22, 12, 0);
+            travelingVector = new Vector3(109, 54, 0);
         }
     }
 
@@ -24,15 +32,15 @@ public class IntroCamManager : MonoBehaviour
     {
         if (!startManager.playerCanMove)
         {
-            if (startManager.scene == 1)
-            {
-                if (transform.position.x < 100)
-                    transform.Translate(Vector3.right * Time.deltaTime * camSpeed); //Fait un traveling sur la map
-                else
-                {
-                    startManager.playerCanMove = true; //Active les mouvements du joueur une fois terminé
-                }
-            }
+            Traveling(travelingVector);
         }
+    }
+
+    private void Traveling(Vector3 goTo)
+    {
+        if (transform.position != goTo)
+            transform.position = Vector3.MoveTowards(transform.position, goTo, camSpeed*Time.deltaTime);
+        else
+            startManager.playerCanMove = true;
     }
 }

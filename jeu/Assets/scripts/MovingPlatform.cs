@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
-    public uint xMove;
-    public uint yMove;
-    public uint zMove;
+    public int xMove;
+    public int yMove;
+    public int zMove;
     public float speed = 5;
     private Vector3 translation;
     private Vector3 startPos;
