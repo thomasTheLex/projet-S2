@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BouletGestion : MonoBehaviour
 {
+    public int maxPower;
+    public int minPower;
+    public float radius = 3f;
+    private int power;
     private float timer = 20;
     // Start is called before the first frame update
     void Start()
@@ -15,14 +19,17 @@ public class BouletGestion : MonoBehaviour
     void Update()
     {
         if (timer > 0)
-            timer -= Time.deltaTime;
+            timer -= Time.deltaTime; //réduction du timer
 
         if (timer < 0 || transform.position.y < -10)
-            Destroy(this.gameObject);
+            Destroy(this.gameObject); //On fait despawn le boulet si son timer passe à 0 ou si il tombe dans le vide
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8577571758688928878}
   m_Layer: 0
   m_Name: Boulet
-  m_TagString: Untagged
+  m_TagString: Boulet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,3 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696be17c4668b724398b47b92ebd2bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxPower: 1000
+  minPower: 2000
+  radius: 3

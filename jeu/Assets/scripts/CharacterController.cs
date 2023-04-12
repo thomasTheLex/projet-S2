@@ -62,7 +62,30 @@ public class CharacterController : MonoBehaviour
 
             if (transform.position.y < -10) //Si on tombe, on retourne au checkpoint
             {
-                transform.position = checkPoint;
+                Respawn();
+            }
+        }
+
+        Ray ray = new Ray();
+        RaycastHit hit;
+        Vector3 axis;
+        float angle;
+
+        ray.origin = transform.position;
+        ray.direction = -Vector3.up;
+
+        Physics.Raycast(ray, out hit); //Un rayon qui va toucher un objet vers le bas (le sol)
+
+        if (hit.transform.rotation.eulerAngles == Vector3.zero)
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+
+        else
+        {
+            axis = Vector3.Cross(-transform.up, -hit.normal);
+            if (axis != Vector3.zero)
+            {
+                angle = Mathf.Atan2(Vector3.Magnitude(axis), Vector3.Dot(-transform.up, -hit.normal)); //Calcul de l'angle
+                transform.RotateAround(axis, angle); //On applique la rotation
             }
         }
     }
@@ -86,28 +109,16 @@ public class CharacterController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground") ||collision.gameObject.CompareTag("Pente"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Pente"))
             inAir = false;
+
+        else if (collision.gameObject.CompareTag("Boulet")) //Respawn si on se prend un boulet
+            Respawn();
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void Respawn()
     {
-        if (collision.gameObject.CompareTag("Pente"))
-        {
-            if (rotationCam > -0.05)
-            {
-                playerCam.transform.Rotate(Vector3.left * camRotationSpeed * Time.deltaTime);
-                rotationCam = playerCam.transform.rotation.x;
-            }
-                
-        }
-        else if (collision.gameObject.CompareTag("Ground"))
-        {
-            if (rotationCam < 0)
-            {
-                playerCam.transform.Rotate(Vector3.right * camRotationSpeed * Time.deltaTime);
-                rotationCam = playerCam.transform.rotation.x;
-            }
-        }
+        transform.position = checkPoint;
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - IntroCam
   - MovingWall
   - Pente
+  - Boulet
   layers:
   - Default
   - TransparentFX
