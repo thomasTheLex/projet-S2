@@ -184,10 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a9cf2c373476e469840edfe3fb72d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 5140992373091574646, guid: e29b7ed5663786c4d960b635614c7f8d, type: 3}
-  AiToSpawn: []
-  playerCanMove: 0
-  scene: 0
 --- !u!4 &41929801
 Transform:
   m_ObjectHideFlags: 0
@@ -494,7 +490,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463389025}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.9342537, y: 1.8384471, z: 20.310562}
@@ -702,7 +698,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619179190}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1.8384471, z: 5.463443}

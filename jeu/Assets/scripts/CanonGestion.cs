@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CanonGestion : MonoBehaviour
 {
-    private int minCooldown = 2;
-    private int maxCooldown = 8;
+    private int minCooldown = 1;
+    private int maxCooldown = 3;
     public float cooldown = 8f;
 
     public Vector3 decal = new Vector3(0,0,0);

@@ -5,42 +5,49 @@ using UnityEngine.SceneManagement;
 
 public class StartManager : MonoBehaviour
 {
-    public GameObject playerPrefab;
-    public GameObject[] AiToSpawn;
     private GameObject introCamera;
     private GameObject playerCamera;
-    public bool playerCanMove = false;
-    public int scene;
+    public static bool playerCanMove = false;
+    public static int scene;
 
-
+    private void Start()
+    {
+        
+    }
     private void OnLevelWasLoaded(int level)
     {
-        scene = level;  
+        Debug.Log(NextLevel.ToSpawn[0]);
+        scene = level;
         playerCanMove = false;
-        Instantiate(playerPrefab, new Vector3(0, 0, 0), playerPrefab.transform.rotation);
+        Vector3 position = new Vector3(1, 0, 0);
+        foreach (GameObject objet in NextLevel.ToSpawn)
+        {
+            if (objet != null)
+                Instantiate(objet, position, Quaternion.Euler(0, 90, 0));
+        }
         introCamera = GameObject.FindGameObjectWithTag("IntroCam");
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
-
-        //Rajouter le spawn de ai avec un foreach ici
-
+        NextLevel.nbSurvivor = NextLevel.nbSurvivor / 2;
+        NextLevel.NewLevel();
     }
 
     private void Update()
     {
         if (playerCanMove)
         {
-            introCamera.SetActive(false);
             playerCamera.SetActive(true);
         }
-        else
-        {
-            introCamera.SetActive(true);
-            playerCamera.SetActive(false);
-        }
-    }
 
-    private IEnumerable WaitForSecond(int second)
-    {
-        yield return new WaitForSeconds(second);
+        if (NextLevel.peopleFinish == NextLevel.nbSurvivor) //Si le nombre de qualifié est égale au nombre de perso ayant fini
+        {
+            if (playerCanMove)
+            {
+                //Defaite
+            }
+            else
+            {
+                SceneManager.LoadScene(scene + 1); //Niveau suivant
+            }
+        }
     }
 }

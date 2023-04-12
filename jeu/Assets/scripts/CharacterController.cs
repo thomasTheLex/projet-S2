@@ -7,7 +7,6 @@ public class CharacterController : MonoBehaviour
     public float rotationCam = 0;
     private Animator playerAnim;
     private Rigidbody playerRb;
-    private StartManager startManager;
     private Camera playerCam;
     private float speed = 0;
     private float horizontalInput;
@@ -23,15 +22,14 @@ public class CharacterController : MonoBehaviour
         playerCam = GetComponentInChildren<Camera>();
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody>();
-        startManager = GameObject.FindObjectOfType<StartManager>();
 
-        checkPoint = new Vector3(0, 0, 0);
+        checkPoint = new Vector3(1, 0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (startManager.playerCanMove) //Permet d'activer le controle du joueur lorsque la cinématique d'intro est fini
+        if (StartManager.playerCanMove) //Permet d'activer le controle du joueur lorsque la cinématique d'intro est fini
         {
             //Double la vitesse si touche de sprint enfonce
             if (Input.GetKey(KeyCode.LeftShift))
@@ -64,29 +62,12 @@ public class CharacterController : MonoBehaviour
             {
                 Respawn();
             }
+
+            CalculRotation();
         }
-
-        Ray ray = new Ray();
-        RaycastHit hit;
-        Vector3 axis;
-        float angle;
-
-        ray.origin = transform.position;
-        ray.direction = -Vector3.up;
-
-        Physics.Raycast(ray, out hit); //Un rayon qui va toucher un objet vers le bas (le sol)
-
-        if (hit.transform.rotation.eulerAngles == Vector3.zero)
-            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-
         else
         {
-            axis = Vector3.Cross(-transform.up, -hit.normal);
-            if (axis != Vector3.zero)
-            {
-                angle = Mathf.Atan2(Vector3.Magnitude(axis), Vector3.Dot(-transform.up, -hit.normal)); //Calcul de l'angle
-                transform.RotateAround(axis, angle); //On applique la rotation
-            }
+            playerAnim.SetFloat("speed_f", 0);
         }
     }
 
@@ -100,9 +81,10 @@ public class CharacterController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Finish"))
             {
-            startManager.playerCanMove = false; //On désactive les mouvements du joueur
+            StartManager.playerCanMove = false; //On désactive les mouvements du joueur
             playerAnim.SetTrigger("dance_t"); //Lancement de la danse de fin
-                //Gérer la fin de niveau ici
+            NextLevel.Finish(this.gameObject);
+            //Gérer la fin de niveau ici
             }
     }
 
@@ -119,6 +101,35 @@ public class CharacterController : MonoBehaviour
     private void Respawn()
     {
         transform.position = checkPoint;
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        //transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+    }
+
+
+    private void CalculRotation()
+    {
+        Ray ray = new Ray();
+        RaycastHit hit;
+        Vector3 axis;
+        float angle;
+
+        ray.origin = transform.position;
+        ray.direction = -Vector3.up;
+
+        if(Physics.Raycast(ray, out hit)) //Un rayon qui va toucher un objet vers le bas (le sol)
+        {
+            if (hit.transform.rotation.eulerAngles == Vector3.zero)
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+
+            else
+            {
+                axis = Vector3.Cross(-transform.up, -hit.normal);
+                if (axis != Vector3.zero)
+                {
+                    angle = Mathf.Atan2(Vector3.Magnitude(axis), Vector3.Dot(-transform.up, -hit.normal)); //Calcul de l'angle
+                    transform.RotateAround(axis, angle); //On applique la rotation
+                }
+            }
+        }
+        
     }
 }

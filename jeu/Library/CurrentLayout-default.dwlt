@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 772.8
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_MinSize: {x: 708, y: 492}
   m_MaxSize: {x: 18003, y: 14042}
   vertical: 0
-  controlID: 101
+  controlID: 18
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 433, y: 492}
   m_MaxSize: {x: 14003, y: 14042}
   vertical: 1
-  controlID: 102
+  controlID: 107
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_MinSize: {x: 433, y: 271}
   m_MaxSize: {x: 14003, y: 10021}
   vertical: 0
-  controlID: 29
+  controlID: 59
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -415,7 +415,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/prefabs
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 0
@@ -455,24 +455,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 0}
+    scrollPos: {x: 0, y: 132}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff000000007c4500008e4b0000904b0000924b0000944b0000964b0000984b00009a4b0000
+    m_ExpandedIDs: ffffffff000000007c4500008e4b0000904b0000924b0000944b0000964b0000984b00009a4b0000c84b0000ca4b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: New Terrain
-      m_OriginalName: New Terrain
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 19396
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_SearchString: 
@@ -639,9 +639,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 66.19413, y: 22.15518, z: -13.935727}
+    m_Target: {x: 67.21221, y: 26.572155, z: -11.152744}
     speed: 2
-    m_Value: {x: 66.19413, y: 22.15518, z: -13.935727}
+    m_Value: {x: 67.21221, y: 26.572155, z: -11.152744}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -688,13 +688,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0, y: 0, z: 0, w: 1}
+    m_Target: {x: 0.011991945, y: -0.035989657, z: 0.00043189555, w: 0.99928033}
     speed: 2
-    m_Value: {x: 0.00000009362675, y: 0, z: 0, w: 0.99999994}
+    m_Value: {x: 0.011991942, y: -0.03598965, z: 0.00043189543, w: 0.9992801}
   m_Size:
-    m_Target: 19.827023
+    m_Target: 37.006912
     speed: 2
-    m_Value: 19.827023
+    m_Value: 37.006912
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -746,10 +746,10 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 32}
+      scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 6efbfffffa44000016450000
+      m_ExpandedIDs: d4c2feff18cbfeff3accfefff0ccfefff6d5feff52e0feff94e8feff52e9feff06ebfeff02ecfefff4ecfeff14eefeffaaeefeff62effeff1af6feff16fffeff1e08ffff6e10ffffae18ffff6619ffff4023fffff62affffca2bffff7436ffff024fffff7251ffff9651ffffa051ffff7652ffff7a52ffff465bffff6a5bffff265cffff025dffff065dffff067bffff5ccbffff5adeffff28e7ffffdee8ffff02e9ffff0ce9ffff14e9ffff18e9ffff4eeaffffbeeaffffe4eaffffa0ebffff7cecffff80ecffff8cf4ffff6efbffffd0510000d85100009a550000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

@@ -14,13 +14,13 @@ public class IntroCamManager : MonoBehaviour
         startManager = GameObject.FindObjectOfType<StartManager>();
 
 
-        if (startManager.scene == 1)
+        if (StartManager.scene == 1)
         {
             transform.position = new Vector3(12, 8, -23);
             transform.rotation = new Quaternion(0, 0, 0, transform.rotation.w);
             travelingVector = new Vector3(100, 8, -23);
         }
-        else if (startManager.scene == 2)
+        else if (StartManager.scene == 2)
         {
             transform.position = new Vector3(-22, 12, 0);
             travelingVector = new Vector3(109, 54, 0);
@@ -30,7 +30,7 @@ public class IntroCamManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!startManager.playerCanMove)
+        if (!StartManager.playerCanMove)
         {
             Traveling(travelingVector);
         }
@@ -41,6 +41,10 @@ public class IntroCamManager : MonoBehaviour
         if (transform.position != goTo)
             transform.position = Vector3.MoveTowards(transform.position, goTo, camSpeed*Time.deltaTime);
         else
-            startManager.playerCanMove = true;
+        {
+            StartManager.playerCanMove = true;
+            Destroy(gameObject);
+        }
+            
     }
 }
