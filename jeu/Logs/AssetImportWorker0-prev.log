@@ -22,64 +22,64 @@ AssetImportWorker0
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-51316
+51405
 Successfully changed project path to: /Users/antoinemallet/projet_s2/projet-S2/jeu
 /Users/antoinemallet/projet_s2/projet-S2/jeu
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 41.72 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 39.51 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.27f1 (e759542391ea)
 [Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2020.3.27f1/Unity.app/Contents/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path /Users/antoinemallet/projet_s2/projet-S2/jeu/Assets
 GfxDevice: creating device client; threaded=0
-2023-04-13 11:49:42.179 Unity[5117:99846] (null) preferred device: Apple M1 (high power)
-2023-04-13 11:49:42.179 Unity[5117:99846] Metal devices available: 1
-2023-04-13 11:49:42.179 Unity[5117:99846] 0: Apple M1 (high power)
-2023-04-13 11:49:42.179 Unity[5117:99846] Using device Apple M1 (high power)
+2023-04-13 12:12:01.504 Unity[5259:108914] (null) preferred device: Apple M1 (high power)
+2023-04-13 12:12:01.504 Unity[5259:108914] Metal devices available: 1
+2023-04-13 12:12:01.504 Unity[5259:108914] 0: Apple M1 (high power)
+2023-04-13 12:12:01.504 Unity[5259:108914] Using device Apple M1 (high power)
 Initializing Metal device caps: Apple M1
 Initialize mono
 Mono path[0] = '/Applications/Unity/Hub/Editor/2020.3.27f1/Unity.app/Contents/Managed'
 Mono path[1] = '/Applications/Unity/Hub/Editor/2020.3.27f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = '/Applications/Unity/Hub/Editor/2020.3.27f1/Unity.app/Contents/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56117
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56259
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: /Applications/Unity/Hub/Editor/2020.3.27f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
-Registered in 0.000333 seconds.
+Registered in 0.000308 seconds.
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 38.00 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 37.92 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.131 seconds
+- Completed reload, in  1.090 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1132ms)
-		BeginReloadAssembly (80ms)
+	ReloadAssembly (1090ms)
+		BeginReloadAssembly (74ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (3ms)
-		EndReloadAssembly (950ms)
-			LoadAssemblies (77ms)
+			CreateAndSetChildDomain (2ms)
+		EndReloadAssembly (920ms)
+			LoadAssemblies (71ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (158ms)
+			SetupTypeCache (156ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (34ms)
-			SetupLoadedEditorAssemblies (495ms)
+			RebuildScriptCaches (33ms)
+			SetupLoadedEditorAssemblies (476ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (11ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (38ms)
-				BeforeProcessingInitializeOnLoad (36ms)
-				ProcessInitializeOnLoadAttributes (307ms)
-				ProcessInitializeOnLoadMethodAttributes (102ms)
+				BeforeProcessingInitializeOnLoad (33ms)
+				ProcessInitializeOnLoadAttributes (298ms)
+				ProcessInitializeOnLoadMethodAttributes (96ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (1ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.002673 seconds.
+Registered in 0.002347 seconds.
 Begin MonoManager ReloadAssembly
 OnLevelWasLoaded was found on StartManager
 This message has been deprecated and will be removed in a later version of Unity.
@@ -88,37 +88,37 @@ Native extension for OSXStandalone target not found
 Refreshing native plugins compatible for Editor in 0.44 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.047 seconds
+- Completed reload, in  1.914 seconds
 Domain Reload Profiling:
-	ReloadAssembly (2049ms)
-		BeginReloadAssembly (221ms)
+	ReloadAssembly (1916ms)
+		BeginReloadAssembly (217ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (32ms)
+			DisableScriptedObjects (31ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (25ms)
-		EndReloadAssembly (1747ms)
-			LoadAssemblies (171ms)
+		EndReloadAssembly (1622ms)
+			LoadAssemblies (169ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (295ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (44ms)
-			SetupLoadedEditorAssemblies (1014ms)
+			SetupTypeCache (292ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (42ms)
+			SetupLoadedEditorAssemblies (909ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (13ms)
-				SetLoadedEditorAssemblies (2ms)
+				SetLoadedEditorAssemblies (1ms)
 				RefreshPlugins (0ms)
-				BeforeProcessingInitializeOnLoad (174ms)
-				ProcessInitializeOnLoadAttributes (796ms)
-				ProcessInitializeOnLoadMethodAttributes (28ms)
+				BeforeProcessingInitializeOnLoad (154ms)
+				ProcessInitializeOnLoadAttributes (716ms)
+				ProcessInitializeOnLoadMethodAttributes (23ms)
 				AfterProcessingInitializeOnLoad (1ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (30ms)
+			AwakeInstancesAfterBackupRestoration (27ms)
 Platform modules already initialized, skipping
-Validating Project structure ... 0.002515 seconds.
+Validating Project structure ... 0.003219 seconds.
 Shader import version has changed; will reimport all shaders...
-Upgrading shader files ...0.003208 seconds.
+Upgrading shader files ...0.003093 seconds.
 Application.AssetDatabase Initial Script Refresh Start
 RefreshInfo: InitialScriptRefreshV2(NoUpdateAssetOptions) scanfilter:  ... 1 filters
 RefreshProfiler: Total: 0.000ms
@@ -130,18 +130,18 @@ RefreshProfiler: Total: 0.000ms
 Launching external process: /Applications/Unity/Hub/Editor/2020.3.27f1/Unity.app/Contents/Tools/UnityShaderCompiler
 Launched and connected shader compiler UnityShaderCompiler after 0.03 seconds
 Initializing Unity extensions:
-2023-04-13 11:49:46.214 Unity[5117:99846] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x7f80795327e0 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
-2023-04-13 11:49:46.218 Unity[5117:99846] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x7f8079537680 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
+2023-04-13 12:12:05.561 Unity[5259:108914] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x7f8f6ef0dde0 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
+2023-04-13 12:12:05.564 Unity[5259:108914] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x7f8f6ee4d790 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
 ========================================================================
 Worker process is ready to serve import requests
-Refreshing native plugins compatible for Editor in 0.42 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.40 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2105 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 97.9 MB.
-System memory in use after: 97.9 MB.
+System memory in use before: 98.0 MB.
+System memory in use after: 98.0 MB.
 
 Unloading 94 unused Assets to reduce memory usage. Loaded Objects now: 2603.
-Total: 2.296667 ms (FindLiveObjects: 0.105750 ms CreateObjectMapping: 0.041542 ms MarkObjects: 1.987041 ms  DeleteObjects: 0.161500 ms)
+Total: 2.172459 ms (FindLiveObjects: 0.093500 ms CreateObjectMapping: 0.040750 ms MarkObjects: 1.884583 ms  DeleteObjects: 0.152875 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -157,66 +157,126 @@ AssetImportParameters requested are different than current active one (requested
 Received Import Request.
   path: Assets/Scenes/Map2/Skybox-Desert.mat
   artifactKey: Guid(bef689ca173f74b5a9d9f6b539a6a357) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/Map2/Skybox-Desert.mat using Guid(bef689ca173f74b5a9d9f6b539a6a357) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a584f5d9292caac9674718aa54fce11a') in 0.211541 seconds 
-  Import took 0.215814 seconds .
+Start importing Assets/Scenes/Map2/Skybox-Desert.mat using Guid(bef689ca173f74b5a9d9f6b539a6a357) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '14f77907db19916c2dc60cfdc10d9eb2') in 0.214431 seconds 
+  Import took 0.219365 seconds .
 
 ========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.004363 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 0.45 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-2023-04-13 11:54:32.976 Unity[5117:99846] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x7f809e1ef2e0 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
-Mono: successfully reloaded assembly
-- Completed reload, in  2.048 seconds
-Domain Reload Profiling:
-	ReloadAssembly (2048ms)
-		BeginReloadAssembly (221ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (26ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (57ms)
-		EndReloadAssembly (1749ms)
-			LoadAssemblies (209ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (287ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (37ms)
-			SetupLoadedEditorAssemblies (999ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (11ms)
-				SetLoadedEditorAssemblies (2ms)
-				RefreshPlugins (0ms)
-				BeforeProcessingInitializeOnLoad (216ms)
-				ProcessInitializeOnLoadAttributes (746ms)
-				ProcessInitializeOnLoadMethodAttributes (23ms)
-				AfterProcessingInitializeOnLoad (1ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (30ms)
-Platform modules already initialized, skipping
-OnLevelWasLoaded was found on StartManager
-This message has been deprecated and will be removed in a later version of Unity.
-Add a delegate to SceneManager.sceneLoaded instead to get notifications after scene loading has completed
-Refreshing native plugins compatible for Editor in 0.44 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2075 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 174.1 MB.
-System memory in use after: 174.2 MB.
+Received Import Request.
+  Time since last request: 61.984647 seconds.
+  path: Assets/prefabs/Intro Camera.prefab
+  artifactKey: Guid(238dda7f432c7494c80b2dc0ba91a44d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/prefabs/Intro Camera.prefab using Guid(238dda7f432c7494c80b2dc0ba91a44d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a047683b0fdc8a0be5590b5ff9d603b') in 0.105965 seconds 
+  Import took 0.114420 seconds .
 
-Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 2645.
-Total: 2.026042 ms (FindLiveObjects: 0.081209 ms CreateObjectMapping: 0.040625 ms MarkObjects: 1.890208 ms  DeleteObjects: 0.013375 ms)
+========================================================================
+Received Import Request.
+  Time since last request: 0.000205 seconds.
+  path: Assets/prefabs/Player.prefab
+  artifactKey: Guid(e29b7ed5663786c4d960b635614c7f8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/prefabs/Player.prefab using Guid(e29b7ed5663786c4d960b635614c7f8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6258297bdd19942fc3f180aedda57072') in 0.171190 seconds 
+  Import took 0.174714 seconds .
 
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000198 seconds.
+  path: Assets/prefabs/StartManager.prefab
+  artifactKey: Guid(e9431235829d2b34eaa067a063fc9f7b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/prefabs/StartManager.prefab using Guid(e9431235829d2b34eaa067a063fc9f7b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd7274f40640840dc0f0eba4a1eec8111') in 0.007152 seconds 
+  Import took 0.010580 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 449.790183 seconds.
+  path: Assets/Scenes/Map2/récif-corallien-et-poissons-tropicaux-sous-l-eau-philippines-réalité-virtuelle-marin-paysage-du-jardin-de-corail-panorama-vr-213320010.jpg
+  artifactKey: Guid(3b60b133d5614484ebe4cb5d5cf5e999) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Map2/récif-corallien-et-poissons-tropicaux-sous-l-eau-philippines-réalité-virtuelle-marin-paysage-du-jardin-de-corail-panorama-vr-213320010.jpg using Guid(3b60b133d5614484ebe4cb5d5cf5e999) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8a23c59da40e01da20207edd433a208e') in 0.163906 seconds 
+  Import took 0.179966 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.455039 seconds.
+  path: Assets/Scenes/Map2/récif-corallien-et-poissons-tropicaux-sous-l-eau-philippines-réalité-virtuelle-marin-paysage-du-jardin-de-corail-panorama-vr-213320010.jpg
+  artifactKey: Guid(3b60b133d5614484ebe4cb5d5cf5e999) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Map2/récif-corallien-et-poissons-tropicaux-sous-l-eau-philippines-réalité-virtuelle-marin-paysage-du-jardin-de-corail-panorama-vr-213320010.jpg using Guid(3b60b133d5614484ebe4cb5d5cf5e999) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6bfe57ad64a10813237a4711b771dfe3') in 0.054058 seconds 
+  Import took 0.058631 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 22.628423 seconds.
+  path: Assets/Scenes/Map2/Skybox-marin.mat
+  artifactKey: Guid(673e56a2424324ff98df0d58e7dd55d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Map2/Skybox-marin.mat using Guid(673e56a2424324ff98df0d58e7dd55d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd4a571c720c515743d80ae4e743d789') in 0.020050 seconds 
+  Import took 0.024272 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 140.121681 seconds.
+  path: Assets/Scenes/Map2/istockphoto-1362933044-640x640.jpg
+  artifactKey: Guid(735be79e3c02e4a91b1ef0185f759520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Map2/istockphoto-1362933044-640x640.jpg using Guid(735be79e3c02e4a91b1ef0185f759520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c75f562f81d823c3b8c9b7cefd609a7c') in 0.015811 seconds 
+  Import took 0.049644 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.928822 seconds.
+  path: Assets/Scenes/Map2/istockphoto-1362933044-640x640.jpg
+  artifactKey: Guid(735be79e3c02e4a91b1ef0185f759520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Map2/istockphoto-1362933044-640x640.jpg using Guid(735be79e3c02e4a91b1ef0185f759520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '029d3e026babbe14035245d39ddd18a4') in 0.013054 seconds 
+  Import took 0.016500 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 45.247947 seconds.
+  path: Assets/Scenes/Map2/istockphoto-1362933044-640x640.jpg
+  artifactKey: Guid(735be79e3c02e4a91b1ef0185f759520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Map2/istockphoto-1362933044-640x640.jpg using Guid(735be79e3c02e4a91b1ef0185f759520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e020266b821287abc65c2bf24fbbc41a') in 0.009884 seconds 
+  Import took 0.012988 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.477953 seconds.
+  path: Assets/Scenes/Map2/istockphoto-1362933044-640x640.jpg
+  artifactKey: Guid(735be79e3c02e4a91b1ef0185f759520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Map2/istockphoto-1362933044-640x640.jpg using Guid(735be79e3c02e4a91b1ef0185f759520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c10e4e070c4d6f28b8b1b8a1fcbcb09') in 0.010965 seconds 
+  Import took 0.014275 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 15.638278 seconds.
+  path: Assets/Scenes/Map2/istockphoto-1362933044-640x640.jpg
+  artifactKey: Guid(735be79e3c02e4a91b1ef0185f759520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Map2/istockphoto-1362933044-640x640.jpg using Guid(735be79e3c02e4a91b1ef0185f759520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c42d01b3b99127951706236ef7844ab9') in 0.009454 seconds 
+  Import took 0.012685 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 25.792585 seconds.
+  path: Assets/Scenes/Map2/istockphoto-1362933044-640x640.jpg
+  artifactKey: Guid(735be79e3c02e4a91b1ef0185f759520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Map2/istockphoto-1362933044-640x640.jpg using Guid(735be79e3c02e4a91b1ef0185f759520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b4c066afb2991ca52bd6bd95cd1e4f8') in 0.009350 seconds 
+  Import took 0.012881 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 218.227567 seconds.
+  path: Assets/Scenes/Map2/1-skybox-studio-hyper-realistic-mountains-lake-hd-skybox-10-crea-panorama-e-vr.jpg
+  artifactKey: Guid(984b9baff89db40dbbe4632e5ce28d5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Map2/1-skybox-studio-hyper-realistic-mountains-lake-hd-skybox-10-crea-panorama-e-vr.jpg using Guid(984b9baff89db40dbbe4632e5ce28d5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4863ade8d4143f3353418f6bff7caa59') in 0.019332 seconds 
+  Import took 0.031521 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.240635 seconds.
+  path: Assets/Scenes/Map2/1-skybox-studio-hyper-realistic-mountains-lake-hd-skybox-10-crea-panorama-e-vr.jpg
+  artifactKey: Guid(984b9baff89db40dbbe4632e5ce28d5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Map2/1-skybox-studio-hyper-realistic-mountains-lake-hd-skybox-10-crea-panorama-e-vr.jpg using Guid(984b9baff89db40dbbe4632e5ce28d5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7399ef46cf4f902faf8b8288e22c9dee') in 0.013791 seconds 
+  Import took 0.017763 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 38.453491 seconds.
+  path: Assets/Scenes/Map2/Skybox-marin.mat
+  artifactKey: Guid(673e56a2424324ff98df0d58e7dd55d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Map2/Skybox-marin.mat using Guid(673e56a2424324ff98df0d58e7dd55d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fe5ce6be6ec3214bcd690e93352da23d') in 0.018449 seconds 
+  Import took 0.022587 seconds .
+
