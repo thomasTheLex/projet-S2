@@ -9,20 +9,19 @@ public class IntroCamManager : MonoBehaviour
     private Vector3 travelingVector;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        startManager = GameObject.FindObjectOfType<StartManager>();
-
-
         if (StartManager.scene == 1)
         {
+            Debug.Log("1");
             transform.position = new Vector3(12, 8, -23);
-            transform.rotation = new Quaternion(0, 0, 0, transform.rotation.w);
+            transform.eulerAngles = new Vector3(0, 0, 0);
             travelingVector = new Vector3(100, 8, -23);
         }
         else if (StartManager.scene == 2)
         {
             transform.position = new Vector3(-22, 12, 0);
+            transform.eulerAngles = new Vector3(0, 90, 0);
             travelingVector = new Vector3(109, 54, 0);
         }
     }

@@ -8,7 +8,7 @@ public class BouletGestion : MonoBehaviour
     public int minPower;
     public float radius = 3f;
     private int power;
-    private float timer = 20;
+    private float timer = 8;
     // Start is called before the first frame update
     void Start()
     {

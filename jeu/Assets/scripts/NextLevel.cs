@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class NextLevel : MonoBehaviour
 {
-    public static GameObject[] ToSpawn = new GameObject[60]; //La liste de toutes les personnes qualifiés
+    public static int playerToSpawn; //Le nombre de joueur qui se sont qualifiés
+    public static int aiToSpawn; //Le nombre d'IA qui se sont qualifiées
     public static int nbSurvivor; //Le nombre de personnes qui seront qualifié sur ce round
     public static int peopleFinish = 0; //Le nombre de personnes qui ont actuellement fini le round
 
@@ -12,14 +13,20 @@ public class NextLevel : MonoBehaviour
     {
         if (peopleFinish < nbSurvivor)
         {
-            ToSpawn[peopleFinish] = obj;
+            if (obj.CompareTag("Player"))
+                playerToSpawn++;
+            else
+                aiToSpawn++;
+
             peopleFinish++;
         }
     }
 
     public static void NewLevel()
     {
-        ToSpawn = new GameObject[nbSurvivor];
+        Debug.Log("NewLevel");
+        aiToSpawn = 0;
+        playerToSpawn = 0;
         peopleFinish = 0;
-    }
+    }   
 }

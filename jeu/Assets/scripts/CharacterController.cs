@@ -63,7 +63,8 @@ public class CharacterController : MonoBehaviour
                 Respawn();
             }
 
-            CalculRotation();
+            if (StartManager.scene != 1)
+                CalculRotation();
         }
         else
         {

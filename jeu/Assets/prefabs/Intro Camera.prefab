@@ -93,10 +93,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1068177878683275464}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0518c507595ee4540887b1f07235b1b7, type: 3}
+  m_Script: {fileID: 11500000, guid: d25033249f0f4604ea7090a3cc3474cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 0}
-  introCamPrefab: {fileID: 0}
-  nbIA: 0
-  speed: 1
+  camSpeed: 10

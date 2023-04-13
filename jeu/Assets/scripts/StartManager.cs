@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class StartManager : MonoBehaviour
 {
-    private GameObject introCamera;
+    public GameObject introCamera;
+    public GameObject playerPrefab;
+    //public GameObject aiPrefab;
     private GameObject playerCamera;
     public static bool playerCanMove = false;
     public static int scene;
@@ -16,18 +18,24 @@ public class StartManager : MonoBehaviour
     }
     private void OnLevelWasLoaded(int level)
     {
-        Debug.Log(NextLevel.ToSpawn[0]);
         scene = level;
+        Instantiate(introCamera);
         playerCanMove = false;
         Vector3 position = new Vector3(1, 0, 0);
-        foreach (GameObject objet in NextLevel.ToSpawn)
+        for(int i = 0; i < NextLevel.playerToSpawn; i++)
         {
-            if (objet != null)
-                Instantiate(objet, position, Quaternion.Euler(0, 90, 0));
+            Instantiate(playerPrefab, position, playerPrefab.transform.rotation);
+            //Changer la position
         }
-        introCamera = GameObject.FindGameObjectWithTag("IntroCam");
+
+        /*for (int j = 0; j < NextLevel.aiToSpawn; j++)
+        {
+            Instantiate(aiPrefab, position, playerPrefab.transform.rotation);
+            //Changer la position
+        }*/
+
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        NextLevel.nbSurvivor = NextLevel.nbSurvivor / 2;
+        NextLevel.nbSurvivor = 1;//NextLevel.nbSurvivor / 2;
         NextLevel.NewLevel();
     }
 
