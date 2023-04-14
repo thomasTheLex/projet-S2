@@ -22,17 +22,15 @@ public class StartManager : MonoBehaviour
         Instantiate(introCamera);
         playerCanMove = false;
         Vector3 position = new Vector3(1, 0, 0);
-        for(int i = 0; i < NextLevel.playerToSpawn; i++)
+        foreach(GameObject obj in NextLevel.ToSpawn)
         {
-            Instantiate(playerPrefab, position, playerPrefab.transform.rotation);
-            //Changer la position
+            if (obj != null)
+            {
+                obj.transform.position = position;
+                obj.transform.eulerAngles = new Vector3(0, 90, 0);
+                obj.SetActive(true);
+            }
         }
-
-        /*for (int j = 0; j < NextLevel.aiToSpawn; j++)
-        {
-            Instantiate(aiPrefab, position, playerPrefab.transform.rotation);
-            //Changer la position
-        }*/
 
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
         NextLevel.nbSurvivor = 1;//NextLevel.nbSurvivor / 2;

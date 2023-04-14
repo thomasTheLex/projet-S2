@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class ButtonUI : MonoBehaviour
 {
+    public GameObject playerPrefab;
+    public GameObject[] layer;
+    public GameObject[] inputFields;
     public void StartGameButton()
     {
         NextLevel.nbSurvivor = 1;
-        NextLevel.playerToSpawn = 1;
-        //NextLevel.ToSpawn[0] = playerPrefab;
+        NextLevel.Finish(Instantiate(playerPrefab));
         SceneManager.LoadScene("map1");
     }
 
@@ -17,4 +19,29 @@ public class ButtonUI : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void SaveButton()
+    {
+        
+    }
+
+    public void LoadButton()
+    {
+
+    }
+
+    public void ChangeMenu()
+    {
+        foreach(GameObject lay in layer)
+        {
+            lay.SetActive(!lay.activeSelf);
+        }
+    }
+
+    public void RealInput(string input)
+    {
+        string i = Input.inputString;
+    }
+
+
 }
