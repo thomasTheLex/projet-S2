@@ -1,13 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class ButtonUI : MonoBehaviour
 {
+    private string[] keys = new string[] { "backspace", "delete", "tab", "clear", "return", "pause", "escape", "space", "up", "down", "right", "left", "insert", "home", "end", "page up", "page down", "f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f10", "f11", "f12", "f13", "f14", "f15", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "\"", "#", "$", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "numlock", "caps lock", "scroll lock", "right shift", "left shift", "right ctrl", "left ctrl", "right alt", "left alt" };
+    int l = 103;
     public GameObject playerPrefab;
     public GameObject[] layer;
     public GameObject[] inputFields;
+
+    private void Start()
+    {
+        SettingsManager.Initialized();
+    }
+
     public void StartGameButton()
     {
         NextLevel.nbSurvivor = 1;
@@ -22,12 +31,7 @@ public class ButtonUI : MonoBehaviour
 
     public void SaveButton()
     {
-        
-    }
-
-    public void LoadButton()
-    {
-
+        SettingsManager.SetKey();
     }
 
     public void ChangeMenu()
@@ -38,10 +42,19 @@ public class ButtonUI : MonoBehaviour
         }
     }
 
-    public void RealInput(string input)
+    public void InputButton()
     {
-        string i = Input.inputString;
+        string name = EventSystem.current.currentSelectedGameObject.name;
+        string res = "";
+        int i = 0;
+        while (i < l && res == "")
+        {
+            if (Input.GetKey(keys[i]))
+                res = keys[i];
+            i++;
+        }
+
+        if (res != "")
+            SettingsManager.controlDict[name] = res;
     }
-
-
 }

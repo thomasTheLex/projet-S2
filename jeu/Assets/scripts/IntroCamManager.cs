@@ -13,7 +13,6 @@ public class IntroCamManager : MonoBehaviour
     {
         if (StartManager.scene == 1)
         {
-            Debug.Log("1");
             transform.position = new Vector3(12, 8, -23);
             transform.eulerAngles = new Vector3(0, 0, 0);
             travelingVector = new Vector3(100, 8, -23);

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+    private Dictionary<string, string> control;
+    public int playerNumber = 1;
     public float rotationCam = 0;
     private Animator playerAnim;
     private Rigidbody playerRb;
@@ -19,6 +21,7 @@ public class CharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        control = SettingsManager.controlDict;
         playerCam = GetComponentInChildren<Camera>();
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody>();
@@ -32,26 +35,30 @@ public class CharacterController : MonoBehaviour
         if (StartManager.playerCanMove) //Permet d'activer le controle du joueur lorsque la cinématique d'intro est fini
         {
             //Double la vitesse si touche de sprint enfonce
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(control["Sprint" + playerNumber]))
                 speed = 1;
             else
                 speed = 0.5f;
 
             //Active la marche arriere si S est enfonce, desactive sinon
-            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            if (Input.GetKey(control["Backward" + playerNumber]))
                 playerAnim.SetBool("back_b", true);
             else
                 playerAnim.SetBool("back_b", false);
 
-            if (Input.GetAxis("Vertical") != 0) //Si S ou W enfonce
+            if (Input.GetKey(control["Forward" + playerNumber])) //Si touche pour avancer
                 playerAnim.SetFloat("speed_f", speed);
             else
                 playerAnim.SetFloat("speed_f", 0);
 
-            horizontalInput = Input.GetAxis("Horizontal"); //Pour obtenir si A ou D sont presses
+            horizontalInput = 0;
+            if (Input.GetKey(control["Left" + playerNumber]))
+                horizontalInput -= 1;
+            if (Input.GetKey(control["Right" + playerNumber]))
+                horizontalInput += 1;
             transform.Rotate(Vector3.up, Time.deltaTime * horizontalInput * turnSpeed);
 
-            if (Input.GetKeyDown(KeyCode.Space) && !inAir)
+            if (Input.GetKeyDown(control["Jump" + playerNumber]) && !inAir)
             {
                 playerAnim.SetTrigger("jump_t"); //Active le trigger de l'animation si ESPACE est presse
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
