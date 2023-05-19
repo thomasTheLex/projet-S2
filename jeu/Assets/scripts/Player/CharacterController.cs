@@ -34,6 +34,10 @@ public class CharacterController : MonoBehaviour
     {
         if (StartManager.playerCanMove) //Permet d'activer le controle du joueur lorsque la cinématique d'intro est fini
         {
+           /* if (Input.GetKeyDown(KeyCode.M))
+                transform.position = new Vector3(100, 0, -3);*/
+
+
             //Double la vitesse si touche de sprint enfonce
             if (Input.GetKey(control["Sprint" + playerNumber]))
                 speed = 1;
@@ -75,7 +79,7 @@ public class CharacterController : MonoBehaviour
         }
         else
         {
-            playerAnim.SetFloat("speed_f", 0);
+            playerAnim.SetFloat("speed_f", 0);      
         }
     }
 

@@ -23,6 +23,12 @@ public class IntroCamManager : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 90, 0);
             travelingVector = new Vector3(109, 54, 0);
         }
+        else
+        {
+            transform.position = new Vector3(23,20,-44);
+            transform.eulerAngles = new Vector3(25, 0, 0);
+            travelingVector = new Vector3(126, 20, -60);
+        }
     }
 
     // Update is called once per frame

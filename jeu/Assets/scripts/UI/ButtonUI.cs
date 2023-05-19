@@ -21,7 +21,7 @@ public class ButtonUI : MonoBehaviour
     {
         NextLevel.nbSurvivor = 1;
         NextLevel.Finish(Instantiate(playerPrefab));
-        SceneManager.LoadScene("map1");
+        SceneManager.LoadScene(1);
     }
 
     public void ExitButton()

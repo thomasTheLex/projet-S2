@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class CanonGestion : MonoBehaviour
 {
-    private int minCooldown = 1;
-    private int maxCooldown = 3;
+    public int minCooldown = 1;
+    public int maxCooldown = 3;
     public float cooldown = 8f;
 
     public Vector3 decal = new Vector3(0,0,0);
     public int minPower = 100;
     public int maxPower = 200;
-    public int speed = 5;
     public GameObject bouletPrefab;
 
 
