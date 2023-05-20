@@ -14,7 +14,6 @@ public class NextLevel : MonoBehaviour
         {
             DontDestroyOnLoad(obj);
             ToSpawn[peopleFinish] = obj;
-            obj.SetActive(false);
             peopleFinish++;
         }
     }

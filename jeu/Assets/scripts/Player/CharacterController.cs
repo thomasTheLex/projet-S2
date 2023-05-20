@@ -27,6 +27,7 @@ public class CharacterController : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody>();
         checkpointParticle = GetComponentInChildren<ParticleSystem>();
+        playerCam.targetDisplay = playerNumber;
 
         checkPoint = new Vector3(1, 0, 0);
     }
@@ -97,8 +98,8 @@ public class CharacterController : MonoBehaviour
         if (other.gameObject.CompareTag("Finish"))
             {
             StartManager.playerCanMove = false; //On désactive les mouvements du joueur
-            playerAnim.SetTrigger("dance_t"); //Lancement de la danse de fin
             NextLevel.Finish(this.gameObject);
+            EndAnim();
             //Gérer la fin de niveau ici
             }
     }
@@ -146,5 +147,12 @@ public class CharacterController : MonoBehaviour
             }
         }
         
+    }
+
+    private IEnumerator EndAnim()
+    {
+        playerAnim.SetTrigger("dance_t");
+        yield return new WaitForSeconds(4);
+        this.gameObject.SetActive(false);
     }
 }
