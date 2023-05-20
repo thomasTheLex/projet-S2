@@ -6,8 +6,7 @@ public class BouletGestion : MonoBehaviour
 {
     public int maxPower;
     public int minPower;
-    public float radius = 3f;
-    private int power;
+    public ParticleSystem explosionParticle;
     private float timer = 8;
     // Start is called before the first frame update
     void Start()
@@ -29,6 +28,9 @@ public class BouletGestion : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            var explosion = Instantiate(explosionParticle);
+            explosion.transform.position = collision.transform.position;
+            explosion.transform.parent = null;
             Destroy(this.gameObject);
         }
     }

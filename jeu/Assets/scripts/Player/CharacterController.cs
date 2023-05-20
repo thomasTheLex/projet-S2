@@ -17,6 +17,7 @@ public class CharacterController : MonoBehaviour
     public float jumpForce = 1.00f;
     private bool inAir = false;
     public Vector3 checkPoint;
+    private ParticleSystem checkpointParticle;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class CharacterController : MonoBehaviour
         playerCam = GetComponentInChildren<Camera>();
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody>();
+        checkpointParticle = GetComponentInChildren<ParticleSystem>();
 
         checkPoint = new Vector3(1, 0, 0);
     }
@@ -89,6 +91,7 @@ public class CharacterController : MonoBehaviour
         if (other.gameObject.CompareTag("Checkpoint"))
             {
                 checkPoint = other.gameObject.transform.position;
+                checkpointParticle.Play();
             }
 
         if (other.gameObject.CompareTag("Finish"))
