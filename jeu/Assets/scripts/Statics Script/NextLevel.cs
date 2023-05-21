@@ -4,23 +4,27 @@ using UnityEngine;
 
 public class NextLevel : MonoBehaviour
 {
-    public static GameObject[] ToSpawn = new GameObject[60]; //La liste contenant tout les personnages à faire spawn au prochain round
+    public static List<GameObject> player =  new List<GameObject>(60); //La liste contenant tout les personnages à faire spawn au prochain round
     public static int nbSurvivor; //Le nombre de personnes qui seront qualifié sur ce round
     public static int peopleFinish = 0; //Le nombre de personnes qui ont actuellement fini le round
 
-    public static void Finish(GameObject obj)
+    public static void Finish()
     {
         if (peopleFinish < nbSurvivor)
         {
-            DontDestroyOnLoad(obj);
-            ToSpawn[peopleFinish] = obj;
             peopleFinish++;
         }
     }
 
     public static void NewLevel()
     {
-        ToSpawn = new GameObject[nbSurvivor];
         peopleFinish = 0;
-    }   
+    }
+
+    public static void Start(List<GameObject> playerList)
+    {
+        player = playerList;
+        foreach (GameObject obj in playerList)
+            DontDestroyOnLoad(obj);
+    }
 }

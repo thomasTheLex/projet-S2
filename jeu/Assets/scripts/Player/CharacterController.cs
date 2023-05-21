@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class CharacterController : MonoBehaviour, ICharacter
 {
     private Dictionary<string, string> control;
     public int playerNumber = 1;
@@ -18,6 +18,9 @@ public class CharacterController : MonoBehaviour
     private bool inAir = false;
     public Vector3 checkPoint;
     private ParticleSystem checkpointParticle;
+    private bool _haveFinish = true;
+
+    public bool HaveFinish { get => _haveFinish; set => _haveFinish = value; }  
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +30,6 @@ public class CharacterController : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody>();
         checkpointParticle = GetComponentInChildren<ParticleSystem>();
-        playerCam.targetDisplay = playerNumber;
 
         checkPoint = new Vector3(1, 0, 0);
     }
@@ -97,9 +99,11 @@ public class CharacterController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Finish"))
             {
+            _haveFinish = true;
             StartManager.playerCanMove = false; //On désactive les mouvements du joueur
-            NextLevel.Finish(this.gameObject);
-            EndAnim();
+            NextLevel.Finish();
+            playerAnim.SetTrigger("dance_t");
+            StartCoroutine(Wait4());
             //Gérer la fin de niveau ici
             }
     }
@@ -149,9 +153,8 @@ public class CharacterController : MonoBehaviour
         
     }
 
-    private IEnumerator EndAnim()
+    private IEnumerator Wait4()
     {
-        playerAnim.SetTrigger("dance_t");
         yield return new WaitForSeconds(4);
         this.gameObject.SetActive(false);
     }

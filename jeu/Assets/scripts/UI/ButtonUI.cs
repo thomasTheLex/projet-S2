@@ -19,10 +19,36 @@ public class ButtonUI : MonoBehaviour
 
     public void StartGameButton()
     {
-        NextLevel.nbSurvivor = 1;
-        NextLevel.Finish(Instantiate(playerPrefab));
+        NextLevel.nbSurvivor = 1; //60
+        NextLevel.Start(CreateStartList(1, 59));
         SceneManager.LoadScene(1);
     }
+
+    public void TwoPlayerStartButton()
+    {
+        NextLevel.nbSurvivor = 2; //60
+
+        NextLevel.Start(CreateStartList(2, 58));
+
+        SceneManager.LoadScene(1);
+    }
+
+    private List<GameObject> CreateStartList(int nbPlayer, int nbAI)
+    {
+        List<GameObject> res = new List<GameObject>();
+        for (int i = 0; i < nbPlayer; i++)
+        {
+            var tmp = Instantiate(playerPrefab);
+            tmp.GetComponent<CharacterController>().playerNumber = i + 1;
+            res.Add(tmp);
+        }
+
+        //Rajouter boucle pour les IA
+
+        return res;
+    }
+
+
 
     public void ExitButton()
     {

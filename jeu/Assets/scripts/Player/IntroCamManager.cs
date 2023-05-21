@@ -7,10 +7,15 @@ public class IntroCamManager : MonoBehaviour
     private StartManager startManager;
     public float camSpeed = 10;
     private Vector3 travelingVector;
+    private Camera[] cameras;
+    private Camera introCam;
 
     // Start is called before the first frame update
     void Awake()
     {
+        cameras = Camera.allCameras;
+        introCam = GetComponent<Camera>();
+
         if (StartManager.scene == 1)
         {
             transform.position = new Vector3(12, 8, -23);
