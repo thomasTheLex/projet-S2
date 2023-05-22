@@ -7,6 +7,7 @@ public class SettingsManager : MonoBehaviour
 {
     public static Dictionary<string, string> controlDict = new Dictionary<string, string>(12);
     private static GameObject[] buttons;
+    private static bool firstInit = true;
 
     public static void Initialized() //Lancer au start
     {
@@ -14,8 +15,10 @@ public class SettingsManager : MonoBehaviour
         foreach (var b in buttons) //Pour chaque bouton
         {
             string txt = PlayerPrefs.GetString(b.name, b.GetComponentInChildren<Text>().text); //Regarde si le fichier existe, sinon prends un paprametre par défaut
-            controlDict.Add(b.name, txt); //L'ajoute au dictionnaire
+            if (firstInit)
+                controlDict.Add(b.name, txt); //L'ajoute au dictionnaire
         }
+        firstInit = false;
     }
 
     public static void SetKey()

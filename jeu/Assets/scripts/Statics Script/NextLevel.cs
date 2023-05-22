@@ -23,6 +23,9 @@ public class NextLevel : MonoBehaviour
 
     public static void Start(List<GameObject> playerList)
     {
+        foreach (GameObject playe in player) //On detruit les joueurs de la game precedante
+            Destroy(playe.gameObject);
+
         player = playerList;
         foreach (GameObject obj in playerList)
             DontDestroyOnLoad(obj);

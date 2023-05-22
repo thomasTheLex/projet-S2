@@ -19,7 +19,7 @@ public class StartManager : MonoBehaviour
     }
     private void OnLevelWasLoaded(int level)
     {
-        
+        playerCanMove = false;
         CharacterController characterController;
         initializationFinish = false;
         List<GameObject> playerList = new List<GameObject>(2);
@@ -69,7 +69,7 @@ public class StartManager : MonoBehaviour
             playerList[0].GetComponentInChildren<Camera>().rect = new Rect(new Vector2(0, 0), new Vector2(1, 1));
 
         playerCamera = GameObject.FindGameObjectsWithTag("MainCamera");
-        NextLevel.nbSurvivor = 1;//NextLevel.nbSurvivor / 2;
+        NextLevel.nbSurvivor = 2;//NextLevel.nbSurvivor / 2;
         NextLevel.NewLevel();
         initializationFinish = true;
     }
@@ -88,14 +88,32 @@ public class StartManager : MonoBehaviour
 
         if (NextLevel.peopleFinish == NextLevel.nbSurvivor && initializationFinish) //Si le nombre de qualifié est égale au nombre de perso ayant fini
         {
-            if (StartManager.playerCanMove) //Verifier si il y a encore au moins un joueur (à faire)
+            if (HavePlayerLeft()) //Verifier si il y a encore au moins un joueur
             {
-                SceneManager.LoadScene(0);
+                if (scene == 3)
+                    SceneManager.LoadScene(0); //Victoire
+                else
+                    SceneManager.LoadScene(scene + 1); //Niveau suivant
             }
             else
             {
-                SceneManager.LoadScene(scene + 1); //Niveau suivant
+                SceneManager.LoadScene(0); //Défaite
             }
         }
+    }
+
+    private bool HavePlayerLeft()
+    {
+        bool res = false;
+        int i = 0;
+        int l = NextLevel.player.Count;
+        while (i < l && !res)
+        {
+            res = NextLevel.player[i].TryGetComponent<CharacterController>(out _); //On regarde la liste de tout les personnes en vie jusqu'à trouver un joueur
+            i++;
+            
+        }
+
+        return res;
     }
 }

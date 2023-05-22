@@ -62,7 +62,7 @@ public class ButtonUI : MonoBehaviour
 
     public void ChangeMenu()
     {
-        foreach(GameObject lay in layer)
+        foreach (GameObject lay in layer)
         {
             lay.SetActive(!lay.activeSelf);
         }
@@ -71,9 +71,18 @@ public class ButtonUI : MonoBehaviour
     public void InputButton()
     {
         string name = EventSystem.current.currentSelectedGameObject.name;
+        StopAllCoroutines(); //On stop les coroutines en cours pour éviter d'avoir plusieurs boutons en même temps
+        StartCoroutine(WaitForInput(name)); //On lance la coroutine
+        
+    }
+
+    private IEnumerator WaitForInput(string name)
+    {
+        yield return new WaitUntil(HaveInput); //On attend d'avoir une input
+
         string res = "";
         int i = 0;
-        while (i < l && res == "")
+        while (i < l && res == "") //On cherche l'input
         {
             if (Input.GetKey(keys[i]))
                 res = keys[i];
@@ -81,6 +90,12 @@ public class ButtonUI : MonoBehaviour
         }
 
         if (res != "")
-            SettingsManager.controlDict[name] = res;
+            SettingsManager.controlDict[name] = res; //Si trouver, on modifie
     }
+
+    private bool HaveInput()
+    {
+        return Input.inputString.Length != 0; //On regarde si il y a eu une input lors de la dernière frame
+    }
+        
 }

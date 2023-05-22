@@ -4983,6 +4983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a32a7533b0f35d84188c5bc7f4094282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  specCamera: {fileID: 503623782385230896, guid: 400c0595a2f1e2347bba2604c911212c, type: 3}
   playerNumber: 1
   rotationCam: 0
   camRotationSpeed: 5

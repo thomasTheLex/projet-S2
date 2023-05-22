@@ -44,6 +44,7 @@ public class MovingPlatform : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.transform.parent = null;
+            DontDestroyOnLoad(other);
         }
     }
 }

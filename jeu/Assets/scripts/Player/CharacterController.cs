@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour, ICharacter
 {
     private Dictionary<string, string> control;
+    public GameObject specCamera;
     public int playerNumber = 1;
     public float rotationCam = 0;
     private Animator playerAnim;
@@ -37,7 +38,7 @@ public class CharacterController : MonoBehaviour, ICharacter
     // Update is called once per frame
     void Update()
     {
-        if (StartManager.playerCanMove) //Permet d'activer le controle du joueur lorsque la cinématique d'intro est fini
+        if (StartManager.playerCanMove && !HaveFinish) //Permet d'activer le controle du joueur lorsque la cinématique d'intro est fini
         {
            /* if (Input.GetKeyDown(KeyCode.M))
                 transform.position = new Vector3(100, 0, -3);*/
@@ -84,8 +85,11 @@ public class CharacterController : MonoBehaviour, ICharacter
         }
         else
         {
-            playerAnim.SetFloat("speed_f", 0);      
+            playerAnim.SetFloat("speed_f", 0);
         }
+
+        if (StartManager.scene == 0)
+            Destroy(gameObject);
     }
 
 
@@ -97,10 +101,9 @@ public class CharacterController : MonoBehaviour, ICharacter
                 checkpointParticle.Play();
             }
 
-        if (other.gameObject.CompareTag("Finish"))
+        if (other.gameObject.CompareTag("Finish") && !HaveFinish)
             {
-            _haveFinish = true;
-            StartManager.playerCanMove = false; //On désactive les mouvements du joueur
+            _haveFinish = true; //On désactive les mouvements du joueur
             NextLevel.Finish();
             playerAnim.SetTrigger("dance_t");
             StartCoroutine(Wait4());
@@ -155,7 +158,16 @@ public class CharacterController : MonoBehaviour, ICharacter
 
     private IEnumerator Wait4()
     {
-        yield return new WaitForSeconds(4);
-        this.gameObject.SetActive(false);
+        yield return new WaitForSeconds(4); //On attend le temps de l'animation
+        SetSpectator(); //On active la camera spectateur
+        this.gameObject.SetActive(false); //Desactivation du sprite du joueur
+    }
+
+    private void SetSpectator()
+    {
+        GameObject spec = Instantiate(specCamera);
+        spec.transform.parent = null;
+        spec.GetComponent<Camera>().rect = playerCam.rect;
+        spec.GetComponent<SpectatorCameraController>().playerNumber = playerNumber;
     }
 }

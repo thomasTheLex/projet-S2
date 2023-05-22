@@ -14,7 +14,7 @@ public class IntroCamManager : MonoBehaviour
     void Awake()
     {
         cameras = Camera.allCameras;
-        introCam = GetComponent<Camera>();
+        //introCam = GetComponent<Camera>();
 
         if (StartManager.scene == 1)
         {
