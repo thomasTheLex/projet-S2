@@ -1,5 +1,5 @@
 body{
-	background-color: gray;
+	background-color: blue;
 }
 
 h1{
@@ -7,12 +7,15 @@ h1{
 	text-align:center;
 }
 
+h2{
+	text-align: center;
+}
 .menu{
-	width: 15em;
-    border: 1px solid #333;
-    box-shadow: 8px 8px 5px #444;
+	width: 18em;
+    border: 2px solid #333;
+    box-shadow: 8px 8px 5px rgb(239, 227, 3);
     padding: 8px 12px;
-    background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
+    background-image: linear-gradient(180deg, yellow, yellow 40%, yellow);
 }
 
 .Inmenu{
