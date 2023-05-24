@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpectatorCameraController : MonoBehaviour
 {
@@ -8,10 +9,12 @@ public class SpectatorCameraController : MonoBehaviour
     public int defaultSpeed = 20;
     private int speed;
     private Dictionary<string, string> control;
+    private Text txt;
     // Start is called before the first frame update
     void Awake()
     {
         control = SettingsManager.controlDict;
+        txt = gameObject.GetComponentInChildren<Text>();
 
         switch (StartManager.scene)
         {
@@ -50,6 +53,8 @@ public class SpectatorCameraController : MonoBehaviour
             transform.Translate(new Vector3(-1, 0, 0) * speed * Time.deltaTime);
         if (Input.GetKey(control["Right" + playerNumber]))
             transform.Translate(new Vector3(1, 0, 0) * speed * Time.deltaTime);
+
+        txt.text = $"{NextLevel.peopleFinish}/{NextLevel.nbSurvivor}\nPeoples qualifie";
 
     }
 }

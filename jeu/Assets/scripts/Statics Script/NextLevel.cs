@@ -13,6 +13,7 @@ public class NextLevel : MonoBehaviour
         if (peopleFinish < nbSurvivor)
         {
             peopleFinish++;
+            
         }
     }
 
@@ -29,5 +30,14 @@ public class NextLevel : MonoBehaviour
         player = playerList;
         foreach (GameObject obj in playerList)
             DontDestroyOnLoad(obj);
+    }
+
+    public static void EndOfGame()
+    {
+        foreach (GameObject obj in player)
+        {
+            if (obj != null)
+                Destroy(obj);
+        }
     }
 }

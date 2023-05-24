@@ -31,7 +31,7 @@ public class MovingPlatform : MonoBehaviour
             _switch = !_switch;    //On modifie _switch pour aller vers l'autre position
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {

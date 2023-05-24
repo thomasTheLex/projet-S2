@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class IAController : MonoBehaviour
+public class IAController : MonoBehaviour, ICharacter
 {
     public bool condemned = false;
     
@@ -11,9 +11,19 @@ public class IAController : MonoBehaviour
     public NavMeshAgent agent;
     public IOrderedEnumerable<GameObject> destinations;
     public Vector3 checkPoint;
+    private ParticleSystem checkpointParticle;
+    private bool _haveFinish = true;
+    public bool HaveFinish { get => _haveFinish; set => _haveFinish = value; }
+
+
 
     // Start is called before the first frame update
     void Start()
+    {
+        checkpointParticle = GetComponentInChildren<ParticleSystem>();
+
+    }
+    public void Init() //Exécuté à chaque changement de map
     {
         checkPoint = new Vector3(1, 2, 1);
         GameObject[] FindDestinations= GameObject.FindGameObjectsWithTag("chemin");
@@ -24,30 +34,32 @@ public class IAController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        if (!condemned)
+        if (StartManager.playerCanMove && !HaveFinish)
         {
-            
-            agent.SetDestination(destinations.ElementAt(HadToGo).transform.position);
-        }
-        else
-        {
-            gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            StartCoroutine(Waiter());
-            gameObject.GetComponent<Rigidbody>().isKinematic = true;
-        }
+            if (!condemned)
+            {
+                 agent.SetDestination(destinations.ElementAt(HadToGo).transform.position);
+            }
+            else
+            {
+                gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                StartCoroutine(Waiter());
+                gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            }
 
 
-        if (transform.position.y < -10) //Si on tombe, on retourne au checkpoint
-        { 
-            Respawn();
+            if (transform.position.y < -10) //Si on tombe, on retourne au checkpoint
+            {
+                Respawn();
+            }
+
+            if (HadToGo >= destinations.Count())
+            {
+                HadToGo = 0;
+            }
         }
 
-        if (HadToGo >= destinations.Count())
-        {
-            HadToGo = 0;
-        }
-
+        
     }
 
 
@@ -81,7 +93,10 @@ public class IAController : MonoBehaviour
                 }
                 if (HadToGo == destinations.Count())
                 {
-                    Destroy(gameObject);
+                    gameObject.SetActive(false);
+                    HaveFinish = true;
+                    HadToGo = 0;
+                    NextLevel.Finish();
                 }
             }
         }
@@ -89,7 +104,7 @@ public class IAController : MonoBehaviour
         
         else if (other.gameObject.CompareTag("challenge"))
         {
-            int rng = Random.Range(0, 4);
+            int rng = Random.Range(0, (4 + NextLevel.peopleFinish + StartManager.scene));
             if (rng == 2)
             {
                 condemned = true;
@@ -99,6 +114,7 @@ public class IAController : MonoBehaviour
         else if (other.gameObject.CompareTag("Checkpoint"))
         {
             checkPoint = other.gameObject.transform.position;
+            checkpointParticle.Play();
         }
 
         else if (other.gameObject.CompareTag("Boulet"))

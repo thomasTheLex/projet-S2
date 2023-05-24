@@ -29,7 +29,7 @@ public class BouletGestion : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             var explosion = Instantiate(explosionParticle);
-            explosion.transform.position = collision.transform.position;
+            explosion.transform.position = transform.position;
             explosion.transform.parent = null;
             Destroy(this.gameObject);
         }

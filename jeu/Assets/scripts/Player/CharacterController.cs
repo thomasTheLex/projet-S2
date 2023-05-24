@@ -32,7 +32,7 @@ public class CharacterController : MonoBehaviour, ICharacter
         playerRb = GetComponent<Rigidbody>();
         checkpointParticle = GetComponentInChildren<ParticleSystem>();
 
-        checkPoint = new Vector3(1, 0, 0);
+        checkPoint = new Vector3(1, 1, 0);
     }
 
     // Update is called once per frame
@@ -49,6 +49,8 @@ public class CharacterController : MonoBehaviour, ICharacter
                 speed = 1;
             else
                 speed = 0.5f;
+
+            
 
             //Active la marche arriere si S est enfonce, desactive sinon
             if (Input.GetKey(control["Backward" + playerNumber]))
@@ -86,6 +88,8 @@ public class CharacterController : MonoBehaviour, ICharacter
         else
         {
             playerAnim.SetFloat("speed_f", 0);
+            if (!StartManager.playerCanMove)
+                playerAnim.ResetTrigger("dance_t");
         }
 
         if (StartManager.scene == 0)

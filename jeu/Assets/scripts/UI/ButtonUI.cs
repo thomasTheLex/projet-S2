@@ -9,6 +9,7 @@ public class ButtonUI : MonoBehaviour
     private string[] keys = new string[] { "backspace", "delete", "tab", "clear", "return", "pause", "escape", "space", "up", "down", "right", "left", "insert", "home", "end", "page up", "page down", "f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f10", "f11", "f12", "f13", "f14", "f15", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "\"", "#", "$", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "numlock", "caps lock", "scroll lock", "right shift", "left shift", "right ctrl", "left ctrl", "right alt", "left alt" };
     int l = 103;
     public GameObject playerPrefab;
+    public GameObject aiPrefab;
     public GameObject[] layer;
     public GameObject[] inputFields;
 
@@ -19,16 +20,16 @@ public class ButtonUI : MonoBehaviour
 
     public void StartGameButton()
     {
-        NextLevel.nbSurvivor = 1; //60
-        NextLevel.Start(CreateStartList(1, 59));
+        NextLevel.nbSurvivor = 15;
+        NextLevel.Start(CreateStartList(1, 14));
         SceneManager.LoadScene(1);
     }
 
     public void TwoPlayerStartButton()
     {
-        NextLevel.nbSurvivor = 2; //60
+        NextLevel.nbSurvivor = 15;
 
-        NextLevel.Start(CreateStartList(2, 58));
+        NextLevel.Start(CreateStartList(2, 13));
 
         SceneManager.LoadScene(1);
     }
@@ -43,7 +44,10 @@ public class ButtonUI : MonoBehaviour
             res.Add(tmp);
         }
 
-        //Rajouter boucle pour les IA
+        for (int j = 0; j < nbAI; j++)
+        {
+            res.Add(Instantiate(aiPrefab));
+        }
 
         return res;
     }

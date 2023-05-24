@@ -4304,6 +4304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 5140992373091574646, guid: e29b7ed5663786c4d960b635614c7f8d, type: 3}
+  aiPrefab: {fileID: 7449155016722329040, guid: 2b56dff9287bd8f4f806b28d48f2fd59, type: 3}
   layer:
   - {fileID: 965254989}
   - {fileID: 125996342}
