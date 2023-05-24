@@ -10,6 +10,10 @@ TagManager:
   - MovingWall
   - Pente
   - Boulet
+  - chemin
+  - Undefined
+  - challenge
+  - BouletIA
   layers:
   - Default
   - TransparentFX

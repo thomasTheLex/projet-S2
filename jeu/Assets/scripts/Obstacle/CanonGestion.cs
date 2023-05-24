@@ -7,11 +7,13 @@ public class CanonGestion : MonoBehaviour
     public int minCooldown = 1;
     public int maxCooldown = 3;
     public float cooldown = 8f;
+    public int chosenBoulet = 10;
 
     public Vector3 decal = new Vector3(0,0,0);
     public int minPower = 100;
     public int maxPower = 200;
     public GameObject bouletPrefab;
+    public GameObject bouletIA;
 
 
     private void Start()
@@ -26,8 +28,17 @@ public class CanonGestion : MonoBehaviour
         {
             cooldown = Random.Range(minCooldown, maxCooldown); //Reset du cooldown
             Vector3 toSpawn = this.transform.position + decal; //On choisit la position où va spawn le boulet
+            GameObject bouletSpawn;
+            chosenBoulet = Random.Range(0, 10);
+            if (chosenBoulet < 8)
+            {
+                bouletSpawn = Instantiate(bouletPrefab, toSpawn, transform.rotation); //On le fait spawn tout en le mettant dans une variable
+            }
+            else
+            { 
+                bouletSpawn = Instantiate(bouletIA, toSpawn, transform.rotation); //On le fait spawn tout en le mettant dans une variable
+            }
 
-            GameObject bouletSpawn = Instantiate(bouletPrefab, toSpawn, transform.rotation); //On le fait spawn tout en le mettant dans une variable
             Rigidbody bouletSpawnrb = bouletSpawn.GetComponent<Rigidbody>(); //On récupère son rigidbody
 
             bouletSpawnrb.AddRelativeForce(Vector3.left * Random.Range(minPower, maxPower), ForceMode.Impulse); //Pour lui appliquer une force dès le spawn
