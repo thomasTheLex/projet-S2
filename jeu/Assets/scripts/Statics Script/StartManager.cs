@@ -12,11 +12,6 @@ public class StartManager : MonoBehaviour
     public static bool playerCanMove = false;
     public static int scene;
     private bool initializationFinish = false;
-
-    private void Start()
-    {
-        
-    }
     private void OnLevelWasLoaded(int level)
     {
         playerCanMove = false;
@@ -49,7 +44,10 @@ public class StartManager : MonoBehaviour
                             playerList.Add(characterController.gameObject); //On récupère les différents player
                         }
                         else if (obj.TryGetComponent<IAController>(out iAController))
+                        {
+                            iAController.StopAllCoroutines();
                             iAController.Init();
+                        }
                         character.HaveFinish = false;
                     }
                     else
@@ -87,39 +85,14 @@ public class StartManager : MonoBehaviour
         NextLevel.nbSurvivor = NextLevel.nbSurvivor / 2;
         NextLevel.NewLevel();
         initializationFinish = true;
+        StartCoroutine(WaitEndOfCinematic());
+        StartCoroutine(WaitFinish(playerList));
     }
 
     private void Update()
     {
-        if (playerCanMove)
-        {
-            foreach (GameObject cam in playerCamera)
-            {
-                if (cam != null)
-                    cam.SetActive(true);
-            }
-                
-        }
 
-        if (NextLevel.peopleFinish == NextLevel.nbSurvivor && initializationFinish) //Si le nombre de qualifié est égale au nombre de perso ayant fini
-        {
-            if (HavePlayerLeft()) //Verifier si il y a encore au moins un joueur
-            {
-                if (scene == 3)
-                {
-                    NextLevel.EndOfGame();
-                    SceneManager.LoadScene(0); //Victoire
-                }
-
-                else
-                    SceneManager.LoadScene(scene + 1); //Niveau suivant
-            }
-            else
-            {
-                NextLevel.EndOfGame();
-                SceneManager.LoadScene(0); //Défaite
-            }
-        }
+        
     }
 
     private bool HavePlayerLeft()
@@ -139,5 +112,45 @@ public class StartManager : MonoBehaviour
         }
 
         return res;
+    }
+
+    private IEnumerator WaitEndOfCinematic()
+    {
+        yield return new WaitUntil(() => playerCanMove);
+        foreach (GameObject cam in playerCamera)
+        {
+            if (cam != null)
+                cam.SetActive(true);
+        }
+    }
+
+    private IEnumerator WaitFinish(List<GameObject> playerList)
+    {
+        yield return new WaitUntil(() => NextLevel.peopleFinish == NextLevel.nbSurvivor);
+
+        playerCanMove = false;
+  
+        if (HavePlayerLeft()) //Verifier si il y a encore au moins un joueur
+        {
+            if (scene == 3)
+            {
+                yield return new WaitForSeconds(4);
+                NextLevel.EndOfGame();
+                SceneManager.LoadScene(0); //Victoire
+            }
+            else
+                SceneManager.LoadScene(scene + 1); //Niveau suivant
+        }
+        else
+        {
+            foreach (GameObject player in playerList)
+            {
+                var tmp = player.GetComponent<CharacterController>();
+                tmp.Defeat();
+            }
+            yield return new WaitForSeconds(4);
+            NextLevel.EndOfGame();
+            SceneManager.LoadScene(0); //Défaite
+        }
     }
 }

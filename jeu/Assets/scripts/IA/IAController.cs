@@ -12,15 +12,21 @@ public class IAController : MonoBehaviour, ICharacter
     public IOrderedEnumerable<GameObject> destinations;
     public Vector3 checkPoint;
     private ParticleSystem checkpointParticle;
+    public GameObject[] skins;
     private bool _haveFinish = true;
     public bool HaveFinish { get => _haveFinish; set => _haveFinish = value; }
-
+    private Animator anim;
+    private float oldY = 0;
 
 
     // Start is called before the first frame update
     void Start()
     {
         checkpointParticle = GetComponentInChildren<ParticleSystem>();
+        var tmp = Instantiate(skins[Random.Range(0, skins.Length - 1)], transform.position, transform.rotation);
+
+        tmp.transform.parent = transform;
+        anim = GetComponent<Animator>();
 
     }
     public void Init() //Exécuté à chaque changement de map
@@ -36,9 +42,10 @@ public class IAController : MonoBehaviour, ICharacter
     {
         if (StartManager.playerCanMove && !HaveFinish)
         {
+            anim.SetBool("run_b", true);
             if (!condemned)
             {
-                 agent.SetDestination(destinations.ElementAt(HadToGo).transform.position);
+                agent.SetDestination(destinations.ElementAt(HadToGo).transform.position);
             }
             else
             {
@@ -58,8 +65,9 @@ public class IAController : MonoBehaviour, ICharacter
                 HadToGo = 0;
             }
         }
+        else
+            anim.SetBool("run_b", false);
 
-        
     }
 
 
@@ -93,10 +101,9 @@ public class IAController : MonoBehaviour, ICharacter
                 }
                 if (HadToGo == destinations.Count())
                 {
-                    gameObject.SetActive(false);
                     HaveFinish = true;
-                    HadToGo = 0;
-                    NextLevel.Finish();
+                    StartCoroutine(EndAnim());
+                    
                 }
             }
         }
@@ -105,7 +112,7 @@ public class IAController : MonoBehaviour, ICharacter
         else if (other.gameObject.CompareTag("challenge"))
         {
             int rng = Random.Range(0, (4 + NextLevel.peopleFinish + StartManager.scene));
-            if (rng == 2)
+            if (rng < 2)
             {
                 condemned = true;
 
@@ -134,6 +141,12 @@ public class IAController : MonoBehaviour, ICharacter
             condemned = true;
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+            anim.SetTrigger("jump_t");
+    }
+
 
     private void Respawn()
     {
@@ -143,4 +156,12 @@ public class IAController : MonoBehaviour, ICharacter
         gameObject.SetActive(true);
     }
 
+    private IEnumerator EndAnim()
+    {
+        NextLevel.Finish();
+        anim.SetTrigger("dance_t");
+        yield return new WaitForSeconds(4);
+        gameObject.SetActive(false);
+        HadToGo = 0; 
+    }
 }

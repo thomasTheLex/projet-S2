@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterController : MonoBehaviour, ICharacter
 {
@@ -20,6 +21,7 @@ public class CharacterController : MonoBehaviour, ICharacter
     public Vector3 checkPoint;
     private ParticleSystem checkpointParticle;
     private bool _haveFinish = true;
+    private Text endText;
 
     public bool HaveFinish { get => _haveFinish; set => _haveFinish = value; }  
 
@@ -31,6 +33,8 @@ public class CharacterController : MonoBehaviour, ICharacter
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody>();
         checkpointParticle = GetComponentInChildren<ParticleSystem>();
+        endText = GetComponentInChildren<Text>();
+        endText.gameObject.SetActive(false);
 
         checkPoint = new Vector3(1, 1, 0);
     }
@@ -108,6 +112,8 @@ public class CharacterController : MonoBehaviour, ICharacter
         if (other.gameObject.CompareTag("Finish") && !HaveFinish)
             {
             _haveFinish = true; //On désactive les mouvements du joueur
+            endText.text = "Victory !";
+            endText.gameObject.SetActive(true);
             NextLevel.Finish();
             playerAnim.SetTrigger("dance_t");
             StartCoroutine(Wait4());
@@ -164,6 +170,7 @@ public class CharacterController : MonoBehaviour, ICharacter
     {
         yield return new WaitForSeconds(4); //On attend le temps de l'animation
         SetSpectator(); //On active la camera spectateur
+        endText.gameObject.SetActive(false);
         this.gameObject.SetActive(false); //Desactivation du sprite du joueur
     }
 
@@ -173,5 +180,11 @@ public class CharacterController : MonoBehaviour, ICharacter
         spec.transform.parent = null;
         spec.GetComponent<Camera>().rect = playerCam.rect;
         spec.GetComponent<SpectatorCameraController>().playerNumber = playerNumber;
+    }
+
+    public void Defeat()
+    {
+        endText.text = "Defeat...";
+        endText.gameObject.SetActive(true);
     }
 }
