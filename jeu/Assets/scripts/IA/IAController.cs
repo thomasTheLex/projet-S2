@@ -17,6 +17,7 @@ public class IAController : MonoBehaviour, ICharacter
     public bool _haveFinish = true;
     public bool HaveFinish { get => _haveFinish; set => _haveFinish = value; }
     private Animator anim;
+    private int collisionCount = 0;
 
 
     // Start is called before the first frame update
@@ -74,6 +75,9 @@ public class IAController : MonoBehaviour, ICharacter
             {
                 HadToGo = 0;
             }
+
+            if (collisionCount == 0)
+                anim.SetTrigger("jump_t");
         }
     }
 
@@ -145,14 +149,14 @@ public class IAController : MonoBehaviour, ICharacter
 
     private void OnCollisionEnter(Collision collision)
     {
+        collisionCount++;
         if (collision.gameObject.CompareTag("Boulet")) //Respawn si on se prend un boulet
             condemned = true;
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-            anim.SetTrigger("jump_t");
+        collisionCount--;
     }
 
 
@@ -167,11 +171,11 @@ public class IAController : MonoBehaviour, ICharacter
 
     private IEnumerator EndAnim()
     {
+        HadToGo = 0;
         NextLevel.Finish();
         anim.SetBool("run_b", false);
         anim.SetTrigger("dance_t");
         yield return new WaitForSeconds(4);
         gameObject.SetActive(false);
-        HadToGo = 0; 
     }
 }

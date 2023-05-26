@@ -94,6 +94,7 @@ public class CharacterController : MonoBehaviour, ICharacter
         }
         else
         {
+            endText.gameObject.SetActive(false);
             playerAnim.SetFloat("speed_f", 0);
             if (!StartManager.playerCanMove)
                 playerAnim.ResetTrigger("dance_t");
@@ -115,6 +116,7 @@ public class CharacterController : MonoBehaviour, ICharacter
 
         if (other.gameObject.CompareTag("Finish") && !HaveFinish)
             {
+            checkPoint = new Vector3(0, 0, 0);
             _haveFinish = true; //On désactive les mouvements du joueur
             endText.text = "Victory !";
             endText.gameObject.SetActive(true);

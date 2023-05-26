@@ -30,6 +30,7 @@ public class StartManager : MonoBehaviour
         {
             if (obj != null)
             {
+                obj.SetActive(false);
                 obj.transform.position = position;
                 obj.transform.eulerAngles = new Vector3(0, 90, 0);
                 obj.SetActive(true);
