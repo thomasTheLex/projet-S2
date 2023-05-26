@@ -11,12 +11,12 @@ public class IAController : MonoBehaviour, ICharacter
     public NavMeshAgent agent;
     public IOrderedEnumerable<GameObject> destinations;
     public Vector3 checkPoint;
+    private int checkPointHadToGo;
     private ParticleSystem checkpointParticle;
     public GameObject[] skins;
-    private bool _haveFinish = true;
+    public bool _haveFinish = true;
     public bool HaveFinish { get => _haveFinish; set => _haveFinish = value; }
     private Animator anim;
-    private float oldY = 0;
 
 
     // Start is called before the first frame update
@@ -32,8 +32,18 @@ public class IAController : MonoBehaviour, ICharacter
     public void Init() //Exécuté à chaque changement de map
     {
         checkPoint = new Vector3(1, 2, 1);
+        checkPointHadToGo = 0;
         GameObject[] FindDestinations= GameObject.FindGameObjectsWithTag("chemin");
         destinations = FindDestinations.OrderBy(gameobject => gameobject.name);
+        StartCoroutine(WaitForStart());
+    }
+
+    private IEnumerator WaitForStart()
+    {
+        yield return new WaitUntil(() => StartManager.playerCanMove && !HaveFinish);
+        gameObject.SetActive(false);
+        anim.SetBool("run_b", true);
+        gameObject.SetActive(true);
     }
 
 
@@ -65,9 +75,6 @@ public class IAController : MonoBehaviour, ICharacter
                 HadToGo = 0;
             }
         }
-        else
-            anim.SetBool("run_b", false);
-
     }
 
 
@@ -121,6 +128,7 @@ public class IAController : MonoBehaviour, ICharacter
         else if (other.gameObject.CompareTag("Checkpoint"))
         {
             checkPoint = other.gameObject.transform.position;
+            checkPointHadToGo = HadToGo;
             checkpointParticle.Play();
         }
 
@@ -151,6 +159,7 @@ public class IAController : MonoBehaviour, ICharacter
     private void Respawn()
     {
         gameObject.SetActive(false);
+        HadToGo = checkPointHadToGo;
         gameObject.transform.position = checkPoint;
         condemned = false;
         gameObject.SetActive(true);
@@ -159,6 +168,7 @@ public class IAController : MonoBehaviour, ICharacter
     private IEnumerator EndAnim()
     {
         NextLevel.Finish();
+        anim.SetBool("run_b", false);
         anim.SetTrigger("dance_t");
         yield return new WaitForSeconds(4);
         gameObject.SetActive(false);

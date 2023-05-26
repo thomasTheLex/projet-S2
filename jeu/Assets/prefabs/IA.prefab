@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3780324577604522732}
   m_Layer: 0
   m_Name: IA
-  m_TagString: Player
+  m_TagString: IA
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,11 +92,11 @@ MonoBehaviour:
   checkPoint: {x: 0, y: 0, z: 0}
   skins:
   - {fileID: 162968, guid: bfd1ba3aae5e5554ba7de4bc46c0f417, type: 3}
-  - {fileID: 145218, guid: d53683e01c0dc81429534c7b448483b9, type: 3}
   - {fileID: 145024, guid: 92901ce429129ad408641880aa22bec8, type: 3}
   - {fileID: 134906, guid: 75eba40011cb2bf4ba969295bb218429, type: 3}
   - {fileID: 137306, guid: b804e7b2da9c7eb45b212123f68fb1ac, type: 3}
   - {fileID: 161496, guid: 6f9ba7b888b070b449bd5580169895d0, type: 3}
+  _haveFinish: 1
 --- !u!65 &-1325969963443076097
 BoxCollider:
   m_ObjectHideFlags: 0

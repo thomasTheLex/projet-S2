@@ -91,8 +91,6 @@ public class StartManager : MonoBehaviour
 
     private void Update()
     {
-
-        
     }
 
     private bool HavePlayerLeft()

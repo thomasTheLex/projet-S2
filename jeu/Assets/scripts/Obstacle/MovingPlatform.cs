@@ -43,6 +43,7 @@ public class MovingPlatform : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log(other.name);
             other.transform.parent = null;
             DontDestroyOnLoad(other);
         }

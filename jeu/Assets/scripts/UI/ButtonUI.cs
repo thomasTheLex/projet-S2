@@ -84,7 +84,7 @@ public class ButtonUI : MonoBehaviour
     {
         yield return new WaitUntil(HaveInput); //On attend d'avoir une input
 
-        string res = "";
+        /*string res = "";
         int i = 0;
         while (i < l && res == "") //On cherche l'input
         {
@@ -93,8 +93,8 @@ public class ButtonUI : MonoBehaviour
             i++;
         }
 
-        if (res != "")
-            SettingsManager.controlDict[name] = res; //Si trouver, on modifie
+        if (res != "")*/
+            SettingsManager.controlDict[name] = Input.inputString; //Si trouver, on modifie
     }
 
     private bool HaveInput()

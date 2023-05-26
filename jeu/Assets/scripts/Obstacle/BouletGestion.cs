@@ -26,7 +26,7 @@ public class BouletGestion : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("IA"));
         {
             var explosion = Instantiate(explosionParticle);
             explosion.transform.position = transform.position;

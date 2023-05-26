@@ -22,6 +22,8 @@ public class CharacterController : MonoBehaviour, ICharacter
     private ParticleSystem checkpointParticle;
     private bool _haveFinish = true;
     private Text endText;
+    private AudioSource audioSource;
+    public AudioClip[] soundEffects;
 
     public bool HaveFinish { get => _haveFinish; set => _haveFinish = value; }  
 
@@ -35,6 +37,7 @@ public class CharacterController : MonoBehaviour, ICharacter
         checkpointParticle = GetComponentInChildren<ParticleSystem>();
         endText = GetComponentInChildren<Text>();
         endText.gameObject.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
 
         checkPoint = new Vector3(1, 1, 0);
     }
@@ -106,6 +109,7 @@ public class CharacterController : MonoBehaviour, ICharacter
         if (other.gameObject.CompareTag("Checkpoint"))
             {
                 checkPoint = other.gameObject.transform.position;
+                PlaySound(0);
                 checkpointParticle.Play();
             }
 
@@ -128,7 +132,11 @@ public class CharacterController : MonoBehaviour, ICharacter
             inAir = false;
 
         else if (collision.gameObject.CompareTag("Boulet")) //Respawn si on se prend un boulet
+        {
+            PlaySound(1);
             Respawn();
+        }
+            
     }
 
     private void Respawn()
@@ -186,5 +194,11 @@ public class CharacterController : MonoBehaviour, ICharacter
     {
         endText.text = "Defeat...";
         endText.gameObject.SetActive(true);
+    }
+
+    private void PlaySound(int soundToPlay)
+    {
+        audioSource.clip = soundEffects[soundToPlay];
+        audioSource.Play();
     }
 }
