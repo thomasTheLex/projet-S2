@@ -123,7 +123,7 @@ public class IAController : MonoBehaviour, ICharacter
         else if (other.gameObject.CompareTag("challenge"))
         {
             int rng = Random.Range(0, (4 + NextLevel.peopleFinish + StartManager.scene));
-            if (rng < 2)
+            if (rng == 2)
             {
                 condemned = true;
 

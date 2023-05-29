@@ -47,8 +47,10 @@ public class CharacterController : MonoBehaviour, ICharacter
     {
         if (StartManager.playerCanMove && !HaveFinish) //Permet d'activer le controle du joueur lorsque la cinématique d'intro est fini
         {
-           /* if (Input.GetKeyDown(KeyCode.M))
-                transform.position = new Vector3(100, 0, -3);*/
+            /* if (Input.GetKeyDown(KeyCode.M))
+                 transform.position = new Vector3(100, 0, -3);*/
+
+            endText.gameObject.SetActive(false);
 
 
             //Double la vitesse si touche de sprint enfonce
@@ -94,7 +96,6 @@ public class CharacterController : MonoBehaviour, ICharacter
         }
         else
         {
-            endText.gameObject.SetActive(false);
             playerAnim.SetFloat("speed_f", 0);
             if (!StartManager.playerCanMove)
                 playerAnim.ResetTrigger("dance_t");
