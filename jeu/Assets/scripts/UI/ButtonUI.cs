@@ -82,24 +82,35 @@ public class ButtonUI : MonoBehaviour
 
     private IEnumerator WaitForInput(string name)
     {
-        yield return new WaitUntil(HaveInput); //On attend d'avoir une input
-
-        /*string res = "";
-        int i = 0;
-        while (i < l && res == "") //On cherche l'input
-        {
-            if (Input.GetKey(keys[i]))
-                res = keys[i];
-            i++;
-        }
-
-        if (res != "")*/
-            SettingsManager.controlDict[name] = Input.inputString; //Si trouver, on modifie
+        yield return new WaitUntil(() => HaveInput(name)); //On attend d'avoir une input
     }
 
-    private bool HaveInput()
+    private bool HaveInput(string name)
     {
-        return Input.inputString.Length != 0; //On regarde si il y a eu une input lors de la dernière frame
+        if (Input.inputString.Length != 0)
+        {
+            SettingsManager.controlDict[name] = Input.inputString;
+            return true;
+        }
+        else
+        {
+            string res = "";
+            int i = 0;
+            while (i < l && res == "") //On cherche l'input
+            {
+                if (Input.GetKey(keys[i]))
+                    res = keys[i];
+                i++;
+            }
+
+            if (res != "")
+            {
+                SettingsManager.controlDict[name] = res;
+                return true;
+            }
+            else
+                return false;
+        }
     }
         
 }
